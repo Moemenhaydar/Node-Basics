@@ -37,10 +37,10 @@ function onDataReceived(text) {
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
-  else if (text === 'hello\n') {
-    hello();
+  else if (text.trim().startsWith("hello") ){
+    hello(text.trim() + "!");
   }
-  else if(text==='help\n'){
+  else if (text === 'help\n') {
     help();
   }
   else {
@@ -66,29 +66,36 @@ function unknownCommand(c) {
  *
  * @returns {void}
  */
-function hello() {
-  console.log('hello!')
+function hello(input) {
+  const words = input.split(" ");
+  var outputString;
+  if (words.length > 1) {
+    outputString = input.replace("hello", `${ words[0]}`, 1)
+  }else{
+    outputString=input;
+  }
+  outputString=outputString.trim();
+  console.log(outputString)
 }
+  //list all the cmnds with help
+  function help() {
+    const allCmds = ["hello", "exit", "quit", "help"]
+    console.log("the commands are: ")
+    allCmds.forEach((e) => {
+      console.log(e)
 
-//list all the cmnds with help
-function help() {
-  const allCmds = ["hello", "exit", "quit", "help"]
-  console.log("the commands are: ")
-  allCmds.forEach((e) => {
-    console.log(e)
+    })
 
-  })
+  }
+  /**
+   * Exits the application
+   *
+   * @returns {void}
+   */
+  function quit() {
+    console.log('Quitting now, goodbye!')
+    process.exit();
+  }
 
-}
-/**
- * Exits the application
- *
- * @returns {void}
- */
-function quit() {
-  console.log('Quitting now, goodbye!')
-  process.exit();
-}
-
-// The following line starts the application
-startApp("Moemen haydar")
+  // The following line starts the application
+  startApp("Moemen haydar")
