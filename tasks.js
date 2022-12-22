@@ -70,7 +70,7 @@ function hello() {
   console.log('hello!')
 }
 
-
+//list all the cmnds with help
 function help() {
   const allCmds = ["hello", "exit", "quit", "help"]
   console.log("the commands are: ")
