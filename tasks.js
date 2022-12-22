@@ -79,7 +79,7 @@ function hello(input) {
 }
   //list all the cmnds with help
   function help() {
-    const allCmds = ["hello", "exit", "quit", "help"]
+    const allCmds = ["hello", "hello (name)", "exit", "quit", "help"]
     console.log("the commands are: ")
     allCmds.forEach((e) => {
       console.log(e)
