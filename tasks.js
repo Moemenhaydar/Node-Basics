@@ -9,7 +9,7 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-function startApp(name){
+function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
@@ -37,10 +37,13 @@ function onDataReceived(text) {
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
-  else if(text === 'hello\n'){
+  else if (text === 'hello\n') {
     hello();
   }
-  else{
+  else if(text==='help\n'){
+    help();
+  }
+  else {
     unknownCommand(text);
   }
 }
@@ -53,8 +56,8 @@ function onDataReceived(text) {
  * @param  {string} c the text received
  * @returns {void}
  */
-function unknownCommand(c){
-  console.log('unknown command: "'+c.trim()+'"')
+function unknownCommand(c) {
+  console.log('unknown command: "' + c.trim() + '"')
 }
 
 
@@ -63,17 +66,26 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
-function hello(){
+function hello() {
   console.log('hello!')
 }
 
 
+function help() {
+  const allCmds = ["hello", "exit", "quit", "help"]
+  console.log("the commands are: ")
+  allCmds.forEach((e) => {
+    console.log(e)
+
+  })
+
+}
 /**
  * Exits the application
  *
  * @returns {void}
  */
-function quit(){
+function quit() {
   console.log('Quitting now, goodbye!')
   process.exit();
 }
