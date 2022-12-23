@@ -50,6 +50,9 @@ function onDataReceived(text) {
   else if (text === 'list\n') {
     list();
   }
+  else if(text.split(" ")[0] === 'remove' || text === `remove\n`){
+    remove(text);
+  }
   else {
     unknownCommand(text);
   }
@@ -113,6 +116,17 @@ let takeList = ["naruto", "one piece","AOT"]
       task = task.replace('\n', '').trim()
       task = task.split(" ").slice(1).join(' ');
       takeList.push(task)
+    }
+  }
+  //remove function \
+  function remove(removeList){
+    if(removeList === `remove\n`) {
+      return takeList.pop();
+    } else {
+      removeList = removeList.replace('\n', '').trim()
+      removeList = removeList.split(" ").slice(1).join(' ');
+      (typeof parseInt(removeList) == 'number') ? takeList.splice(removeList- 1,1) : console.log("please enter a nb");
+  
     }
   }
 /**
