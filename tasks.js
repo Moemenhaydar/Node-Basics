@@ -128,6 +128,10 @@ let takeList = ["naruto", "one piece","AOT"]
       (typeof parseInt(removeList) == 'number') ? takeList.splice(removeList- 1,1) : console.log("please enter a nb");
   
     }
+    //better remove
+    removeList = parseInt(removeList.split(" ").slice(1).join(' '));
+    takeList.splice(removeList - 1,1);
+    if(removeList > takeList.length) console.log("number does not exist")
   }
 /**
  * Exits the application
