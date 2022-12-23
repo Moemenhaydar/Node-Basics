@@ -53,6 +53,10 @@ function onDataReceived(text) {
   else if(text.split(" ")[0] === 'remove' || text === `remove\n`){
     remove(text);
   }
+  else if(text.split(" ")[0] === 'edit'){
+    if( text === `edit\n`) return console.log("error");
+    edit(text);
+  }
   else {
     unknownCommand(text);
   }
@@ -68,6 +72,15 @@ function onDataReceived(text) {
  */
 function unknownCommand(c) {
   console.log('unknown command: "' + c.trim() + '"')
+}
+function edit(newTask){
+  let task = newTask.trim().split(" ").slice(1);
+  if(Number.isInteger(parseInt(task[0]))){
+    takeList[parseInt(task[0] -1 )] = task.slice(1).join(" ");
+  } else {
+    task = task.join(" ");
+    takeList[takeList.length -1] = task;
+  }
 }
 
 
