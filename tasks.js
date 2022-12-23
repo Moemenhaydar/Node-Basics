@@ -42,6 +42,10 @@ function onDataReceived(text) {
   }
   else if (text === 'help\n') {
     help();
+    
+  }
+  else if(text.split(" ")[0] === 'add'){
+    add(text);
   }
   else if (text === 'list\n') {
     list();
@@ -100,6 +104,16 @@ let takeList = ["naruto", "one piece","AOT"]
     takeList.forEach((element, index) => {
       console.log(`${index + 1}  ${element}`)
     })
+  }
+  //add function
+  function add(task){
+    if(!task) {
+      console.error("error needs an argument")
+    } else {
+      task = task.replace('\n', '').trim()
+      task = task.split(" ").slice(1).join(' ');
+      takeList.push(task)
+    }
   }
 /**
  * Exits the application
